@@ -109,7 +109,7 @@ print(saving)
 if saving == saving_goal:
     print("You Achieved it!")
 elif saving > saving_goal:
-    print("Amazing you saved more then your goal")
+    print("Amazing you saved more then your goal", saving - saving_goal)
 else:
     print("Nxt time you can Achieve! you need: ", saving_goal - saving) 
     
@@ -120,4 +120,12 @@ else:
 
 
 
+
+tracker = {
+    "expenses" : exp_store ,
+    "essentials": essential_list,
+    "discretionary":disc_store,
+    "savings": saving_tracker
+}
+print(tracker)
     
