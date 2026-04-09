@@ -67,6 +67,26 @@ for i in range(1,m+1):
 
 print(essential_list)
 
+# ---- discretenaory-----
+
+disc_store = []
+n = int(input("enter the number of items: "))
+for i in range(1,n+1):
+    disc_date = input("Enter the date(yy-mm-dd):")
+    converted_disc = datetime.strptime(disc_date,"%Y-%m-%d")
+
+    disc_name = input("Enter the name: ")
+    disc_amount = int(input("Enter the amount: "))
+    disc_exp = {
+        "disc_date": disc_date,
+        "disc_name": disc_name,
+        "disc_amount" : disc_amount
+    }
+    disc_total+= disc_amount
+    disc_store.append(disc_exp)
+print(disc_store)
+print("Total spent: ",total)
+
 
 
 
