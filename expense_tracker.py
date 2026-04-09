@@ -1,6 +1,6 @@
-
+print("----Food expense tracker----")
 exp_store =[]
-total = 0 
+exp_total = 0 
 n = int(input("Enter number: "))
 for i in range (1,n+1):
     
@@ -15,16 +15,17 @@ for i in range (1,n+1):
     "amount" :amount
     }
   
-    total += food_exp["amount"]
+    exp_total += food_exp["amount"]
         
     exp_store.append(food_exp)
    
 print(exp_store)
 for exp in exp_store:
     print(exp["date"],exp["item"],exp["amount"])
-print("total Amount: ",total)
+print("total Amount: ",exp_total)
 
 #----usage_tracker-----
+print("---usage tracker---")
 from datetime import datetime 
 from datetime import timedelta
 essential_list = []
@@ -67,9 +68,10 @@ for i in range(1,m+1):
 
 print(essential_list)
 
-# ---- discretenaory-----
-
+# ---- discretionary-----
+print("---discretionary tracker----")
 disc_store = []
+disc_total = 0 
 n = int(input("enter the number of items: "))
 for i in range(1,n+1):
     disc_date = input("Enter the date(yy-mm-dd):")
@@ -85,7 +87,35 @@ for i in range(1,n+1):
     disc_total+= disc_amount
     disc_store.append(disc_exp)
 print(disc_store)
-print("Total spent: ",total)
+print("Total spent: ",disc_total)
+
+
+budget =int(input("Enter your budget(income/pocket money): "))
+saving_goal = int(input('Enter your saving goal: '))
+
+total_spent = exp_total + disc_total 
+saving = budget - total_spent
+
+saving_tracker = {
+    "total_spent": total_spent,
+    "budget" : budget,
+    "saving_goal" : saving_goal,
+    "saving":saving
+    
+}
+print(total_spent)
+print(saving)
+
+if saving == saving_goal:
+    print("You Achieved it!")
+elif saving > saving_goal:
+    print("Amazing you saved more then your goal")
+else:
+    print("Nxt time you can Achieve! you need: ", saving_goal - saving) 
+    
+     # this helps in dopamine release and motivates to save nxt time 
+
+
 
 
 
