@@ -1,10 +1,15 @@
 def food_expense_tracker():
     print("----Food expense tracker----")
+    same_date = input("Are all products from same day(yes/no): ")
+    if same_date == "yes":
+        date =  date = input("Enter the date: ")
+
     exp_store =[]
     exp_total = 0 
     n = int(input("Enter number: "))
     for i in range (1,n+1):
-        date = input("Enter the date: ")
+        if same_date != "yes":
+            date = input("Enter the date: ")
         item = input("Enter the item name: ")
         amount = int(input("Enter the amount: "))
         food_exp = {
