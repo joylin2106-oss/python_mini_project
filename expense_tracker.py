@@ -51,7 +51,7 @@ def usage_tracker():
             end_date = datetime(current_year,new_month,current_day)
 
         else:
-            print("Inavlid")
+            print("Invalid")
     
         usage_store ={
            "items": items,
@@ -117,7 +117,7 @@ print(saving)
 if saving == saving_goal:
     print("You Achieved it!")
 elif saving > saving_goal:
-    print("Amazing you saved more then your goal!", saving - saving_goal)
+    print("Amazing you saved more than your goal!", saving - saving_goal)
 else:
     print("Nxt time you can Achieve! you need: ", saving_goal - saving) 
     
