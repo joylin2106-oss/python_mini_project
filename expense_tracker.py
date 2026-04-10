@@ -5,7 +5,7 @@ def food_expense_tracker():
     n = int(input("Enter number: "))
     for i in range (1,n+1):
         date = input("Enter the date: ")
-        item = input("Enter the item: ")
+        item = input("Enter the item name: ")
         amount = int(input("Enter the amount: "))
         food_exp = {
            "date":date,
@@ -24,6 +24,7 @@ exp_store, exp_total =food_expense_tracker()
 #----usage_tracker-----
 
 def usage_tracker():
+    item_total = 0 
     print("---usage tracker---")
     from datetime import datetime 
     from datetime import timedelta
@@ -31,12 +32,13 @@ def usage_tracker():
     m = int(input("Enter a number: "))
     for i in range(1,m+1):
         items = input("Enter the item name: ")
-        date_opened = input("Enter date (YY-MM-DD): ")
+        item_amount = int(input("Enter the amount: "))
+        date_opened = input("Enter opened date(YY-MM-DD): ")
         converted = datetime.strptime(date_opened,"%Y-%m-%d")
         current_month = converted.month 
         current_year= converted.year
         current_day = converted.day
-        duration = input("Enter the duration: ").lower().split()
+        duration = input("Enter the duration: ").lower().split()     # split () - split the string 
         number = int(duration[0])
         type = duration[1]
         if type == "days" or type == "day":
@@ -53,46 +55,51 @@ def usage_tracker():
     
         usage_store ={
            "items": items,
+           "item_amount": item_amount,
            "date_opened": date_opened,
            "duration": duration, 
            "end_date": end_date
         }
+        item_total += item_amount
         essential_list.append(usage_store)
-        print(essential_list)
-        return essential_list
-essential_list = usage_tracker()
+        print("total spent :",item_total)
+    print(essential_list,item_total)
+    return essential_list,item_total
+essential_list,item_total = usage_tracker()
 
 # ---- discretionary-----
 
 def discretionary_tracker():
     print("---discretionary tracker----")
-    import datetime 
+    from datetime import datetime 
     disc_store = []
     disc_total = 0 
     n = int(input("enter the number of items: "))
     for i in range(1,n+1):
         disc_date = input("Enter the date(yy-mm-dd):")
-        converted_disc = datetime.strptime(disc_date,"%Y-%m-%d")
+        converted_disc = datetime.strptime(disc_date,"%Y-%m-%d")    # striptime - convert the string into date so that we can add the date 
 
         disc_name = input("Enter the name: ")
         disc_amount = int(input("Enter the amount: "))
-        disc_store = {
+        disc_usage = {
            "disc_date": disc_date,
             "disc_name": disc_name,
             "disc_amount" : disc_amount
         }
         disc_total+= disc_amount
-        disc_store.append(disc_store)
+        disc_store.append(disc_usage)
     print(disc_store)
     print("Total spent: ",disc_total)
     print(disc_total)
     return disc_total,disc_store
 disc_total,disc_store = discretionary_tracker()
 
+#----- budget -------
+
 budget =int(input("Enter your budget(income/pocket money): "))
 saving_goal = int(input('Enter your saving goal: '))
 
-total_spent = exp_total + disc_total
+total_spent = exp_total + disc_total + item_total
 saving = budget - total_spent
 
 saving_tracker = {
@@ -105,21 +112,16 @@ saving_tracker = {
 print(total_spent)
 print(saving)
 
+#----- savings ------
+
 if saving == saving_goal:
     print("You Achieved it!")
 elif saving > saving_goal:
-    print("Amazing you saved more then your goal", saving - saving_goal)
+    print("Amazing you saved more then your goal!", saving - saving_goal)
 else:
     print("Nxt time you can Achieve! you need: ", saving_goal - saving) 
     
      # this helps in dopamine release and motivates to save nxt time 
-
-
-
-
-
-
-
 tracker = {
     "expenses" : exp_store ,
     "essentials": essential_list,
