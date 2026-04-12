@@ -1,4 +1,3 @@
-
 def food_expense_tracker():
         print("----Food expense tracker----")
         same_date = input("Are all products from same day(yes/no): ")
@@ -17,7 +16,6 @@ def food_expense_tracker():
                  "item" : item,
                  "amount" :amount
             }
-  
             exp_total += food_exp["amount"]
             exp_store.append(food_exp)
             print(exp_store)
@@ -25,11 +23,10 @@ def food_expense_tracker():
                 print(exp["date"],exp["item"],exp["amount"])
             print("total Amount: ",exp_total)
             return exp_store,exp_total
-    
 def usage_tracker():
     item_total = 0 
     print("---usage tracker---")
-    from datetime import datetime 
+    from datetime import datetime, date
     from datetime import timedelta
     essential_list = []
     m = int(input("Enter a number: "))
@@ -52,10 +49,16 @@ def usage_tracker():
                new_month -=  12
                current_year += 1  # to stop the error
             end_date = datetime(current_year,new_month,current_day)
-
         else:
             print("Invalid")
-    
+        today = date.today()
+        if today < end_date.date():
+            print("Safe to use!", today-end_date.date())
+        elif today == end_date.date():
+            print("Last day to use!")
+        else:
+            print("Already Expired!")    
+        
         usage_store ={
            "items": items,
            "item_amount": item_amount,
@@ -89,10 +92,10 @@ def discretionary_tracker():
         disc_store.append(disc_usage)
         print(disc_store)
         print("Total spent: ",disc_total)
-        print(disc_total)
         return disc_total,disc_store
 
 #----- budget -------
+
 def saving_tracker(exp_total,disc_total,item_total):
     budget =int(input("Enter your budget(income/pocket money): "))
     saving_goal = int(input('Enter your saving goal: '))
@@ -105,8 +108,8 @@ def saving_tracker(exp_total,disc_total,item_total):
       "saving":saving
     
     }
-    print(total_spent)
-    print(saving)
+    print("total spent: ",total_spent)
+    print("savings: ",saving)
 
 #----- savings ------
 

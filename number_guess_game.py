@@ -1,5 +1,7 @@
 import random
 won = False
+low = 1
+high = 100 
 guess = 0
 chances = 0 
 num = random.randint(1,100)
@@ -11,7 +13,7 @@ while chances< 3:
         won = True
         break
     elif guess <num:
-        print("low range:choose higher number")
+        print(" Too low \n Guess between ")
     else:
         print("high range:choose lower number")
 if not won:
